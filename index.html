@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz TRANSFEM</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #000;
+            color: #0f0;
+            text-align: center;
+            padding: 20px;
+        }
+        pre {
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        .question, .result {
+            margin: 20px 0;
+        }
+        button {
+            background-color: #0f0;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #000;
+            color: #0f0;
+            border: 1px solid #0f0;
+        }
+    </style>
+</head>
+<body>
+    <pre>
+*******************************************************************************
+                              _.---._
+                            .'     / '.
+                           /      _/   \
+                          /   .-'`  '.  \
+                        .'   | ^ _ ^ |   '.
+                      .'     \   _   /     \
+                     /        '.___.'       '.
+                    |        _.'   '._        \
+                    |      .' `"---"` '.       |
+                    \      |           |       /
+                     \     | |       | |      /
+                      \    | :--"""--: |    /`
+                       )   | |       | |   (
+                      /    \.'-.....-'./    \
+                     /    .' / ;|:| \ '.    |
+               .-._  \_.-' .' / ' . : '. '. /
+               |  \```      .'  ;     \    `:
+                \  \                   '     '.
+             .--'\  |  '         '       .     `-._
+            /`;--' /_.'          .                 `-.
+            |  `--`        /               \          \
+             \       .'   '                 '-.        |
+              \   '               '          __\       |
+               '.      .                 _.-'  `)     /
+                 '-._                _.-' `| .-`   _.'
+                     `'--....____.--'|     (`  _.-'
+                   jgs        /  | |  \     `"`
+                              \__/ \__/
+*******************************************************************************
+    </pre>
+    <h1>Bem-vinda ao Quiz TRANSFEM!</h1>
+    <p>Sua missão é descobrir se é uma mulher trans!</p>
+
+    <div id="quiz">
+        <div class="question">
+            <p>Doce ou Salgado?</p>
+            <button onclick="checkAnswer(1, 'doce')">Doce</button>
+            <button onclick="checkAnswer(1, 'salgado')">Salgado</button>
+        </div>
+        <div class="question" style="display:none;">
+            <p>Café ou Chá?</p>
+            <button onclick="checkAnswer(2, 'cafe')">Café</button>
+            <button onclick="checkAnswer(2, 'cha')">Chá</button>
+        </div>
+        <div class="question" style="display:none;">
+            <p>Filme ou Série?</p>
+            <button onclick="checkAnswer(3, 'filme')">Filme</button>
+            <button onclick="checkAnswer(3, 'serie')">Série</button>
+        </div>
+        <div class="question" style="display:none;">
+            <p>Escolha uma cor: Amarelo, Verde ou Azul</p>
+            <button onclick="checkAnswer(4, 'amarelo')">Amarelo</button>
+            <button onclick="checkAnswer(4, 'verde')">Verde</button>
+            <button onclick="checkAnswer(4, 'azul')">Azul</button>
+        </div>
+    </div>
+
+    <div class="result" style="display:none;"></div>
+
+    <script>
+        let currentQuestion = 0;
+
+        function checkAnswer(question, answer) {
+            const questions = document.querySelectorAll('.question');
+            const resultDiv = document.querySelector('.result');
+
+            if (question === 1 && answer === 'doce') {
+                resultDiv.innerHTML = 'Eu prefiro salgado, você perdeu!';
+                endGame();
+            } else if (question === 2 && answer === 'cha') {
+                resultDiv.innerHTML = 'Como assim você não bebe café? Perdeu!';
+                endGame();
+            } else if (question === 3 && answer === 'filme') {
+                resultDiv.innerHTML = 'Série é melhor, já viu Arcane? Perdeu!';
+                endGame();
+            } else if (question === 4) {
+                if (answer === 'amarelo') {
+                    resultDiv.innerHTML = 'Fofa, você não é trans!';
+                } else if (answer === 'azul') {
+                    resultDiv.innerHTML = 'Só empresa gosta de azul! Perdeu!';
+                } else {
+                    resultDiv.innerHTML = 'Diva da Natureza, você é TRANS!';
+                }
+                endGame();
+            } else {
+                // Passa para a próxima pergunta
+                questions[currentQuestion].style.display = 'none';
+                currentQuestion++;
+                if (questions[currentQuestion]) {
+                    questions[currentQuestion].style.display = 'block';
+                }
+            }
+        }
+
+        function endGame() {
+            document.getElementById('quiz').style.display = 'none';
+            document.querySelector('.result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
